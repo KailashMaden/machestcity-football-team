@@ -14,7 +14,7 @@ export class Header extends Component {
         style={{
           backgroundColor: '#98c5e9',
           boxShadow: 'none',
-          padding: '3px 0',
+          padding: '5px 0',
           borderBottom: '2px solid #00285e',
         }}
       >
