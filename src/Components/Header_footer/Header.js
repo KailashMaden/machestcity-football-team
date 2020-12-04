@@ -15,7 +15,7 @@ export class Header extends Component {
           backgroundColor: '#98c5e9',
           boxShadow: 'none',
           padding: '5px 0',
-          borderBottom: '2px solid #00285e',
+          borderBottom: '5px solid #00285e',
         }}
       >
         <Toolbar style={{ display: 'flex' }}>
