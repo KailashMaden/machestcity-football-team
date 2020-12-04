@@ -39,7 +39,6 @@ class Enroll extends Component {
 
     newFormdata[element.id] = newElement;
 
-    console.log(newFormdata);
     this.setState({
       formError: false,
       formdata: newFormdata,
@@ -104,7 +103,7 @@ class Enroll extends Component {
             <div className="enroll_input">
               <FormField
                 id={'email'}
-                formdata={this.state.formdata}
+                formdata={this.state.formdata.email}
                 change={(element) => this.updateForm(element)}
               />
               {this.state.formError && (

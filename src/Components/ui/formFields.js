@@ -4,8 +4,8 @@ const FormField = ({ formdata, id, change }) => {
   const showError = () => {
     let errorMessage = (
       <div className="error_label">
-        {formdata.email.validation && !formdata.email.valid
-          ? formdata.email.validationMessage
+        {formdata.validation && !formdata.valid
+          ? formdata.validationMessage
           : null}
       </div>
     );
@@ -13,15 +13,15 @@ const FormField = ({ formdata, id, change }) => {
   };
 
   const renderTemplate = () => {
-    let action = formdata.email.element;
+    let action = formdata.element;
 
     switch (action) {
       case 'input':
         return (
           <div>
             <input
-              {...formdata.email.config}
-              value={formdata.email.value}
+              {...formdata.config}
+              value={formdata.value}
               onChange={(e) => change({ e, id })}
             />
             {showError()}

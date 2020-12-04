@@ -1,25 +1,25 @@
 import firebase from 'firebase/app';
 import 'firebase/app';
 import 'firebase/database';
+import 'firebase/auth';
 
-const API_KEY = process.env.REACT_API_KEY;
-const API_ID = process.env.REACT_API_ID;
-
-const firebaseConfig = {
-  apiKey: `${API_KEY}`,
+const firebaseConfig = firebase.initializeApp({
+  apiKey: 'AIzaSyAKUX8YSaZCePvLNeoyUfXl922d8IFRBlM',
   authDomain: 'm-city-ad8ae.firebaseapp.com',
   databaseURL: 'https://m-city-ad8ae.firebaseio.com',
   projectId: 'm-city-ad8ae',
   storageBucket: 'm-city-ad8ae.appspot.com',
   messagingSenderId: '546419049409',
-  appId: `${API_ID}`,
+  appId: '1:546419049409:web:b91eefb31e99b21d81a540',
   measurementId: 'G-TK4MMBWRZV',
-};
-
-firebase.initializeApp(firebaseConfig);
+});
 
 const firebaseDB = firebase.database();
 const firebaseMatches = firebaseDB.ref('matches');
 const firebasePromotions = firebaseDB.ref('promotions');
 
+export const auth = firebaseConfig.auth();
+
 export { firebase, firebaseMatches, firebasePromotions };
+
+export default firebaseConfig;
