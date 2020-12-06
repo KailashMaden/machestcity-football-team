@@ -9,6 +9,7 @@ import PrivateRoute from './Components/authRoutes/privateRoutes';
 import PublicRoute from './Components/authRoutes/publicRoutes';
 import TheTeam from './Components/theTeam';
 import TheMatches from './Components/theMatches';
+import NotFound from './Components/ui/notFound';
 
 import Dashboard from './Components/admin/Dashboard';
 import AdminMatches from './Components/admin/matches';
@@ -90,6 +91,7 @@ const Routes = (props) => {
           path="/"
           component={Home}
         />
+        <PublicRoute exact restricted={false} {...props} component={NotFound} />
       </Switch>
     </Layout>
   );
