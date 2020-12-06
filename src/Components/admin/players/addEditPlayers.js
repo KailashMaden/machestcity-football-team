@@ -100,6 +100,20 @@ class AddEditPlayers extends Component {
       formdata: newFormdata,
     });
   }
+  updateFields = (player, playerId, formType) => {
+    const newFormdata = { ...this.state.formdata };
+
+    for (let key in newFormdata) {
+      newFormdata[key].value = player[key];
+      newFormdata[key].valid = true;
+    }
+
+    this.setState({
+      playerId,
+      formType,
+      formdata: newFormdata,
+    });
+  };
 
   componentDidMount() {
     const playerId = this.props.match.params.id;
@@ -108,8 +122,26 @@ class AddEditPlayers extends Component {
         formType: 'Add player',
       });
     } else {
+      firebaseDB
+        .ref(`players/${playerId}`)
+        .once('value')
+        .then((snapshot) => {
+          const playerData = snapshot.val();
+          this.updateFields(playerData, playerId, 'Edit player');
+        });
     }
   }
+
+  successForm = (message) => {
+    this.setState({
+      formSuccess: message,
+    });
+    setTimeout(() => {
+      this.setState({
+        formSuccess: '',
+      });
+    }, 2000);
+  };
 
   submitForm(e) {
     e.preventDefault();
@@ -124,6 +156,15 @@ class AddEditPlayers extends Component {
 
     if (formIsValid) {
       if (this.state.formType === 'Edit player') {
+        firebaseDB
+          .ref(`players/${this.state.playerId}`)
+          .update(dataToSubmit)
+          .then(() => {
+            this.successForm('Updated successfully');
+          })
+          .catch((e) => {
+            this.setState({ formError: true });
+          });
       } else {
         firebasePlayers
           .push(dataToSubmit)
