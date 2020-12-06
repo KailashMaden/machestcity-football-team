@@ -6,7 +6,7 @@ import Stripes from '../../Resources/images/stripes.png';
 import { firebasePlayers } from '../../firebase';
 import { firebaseLooper } from '../ui/misc';
 
-class index extends Component {
+class TheTeam extends Component {
   state = {
     loading: true,
     players: [],
@@ -81,4 +81,4 @@ class index extends Component {
   }
 }
 
-export default index;
+export default TheTeam;
